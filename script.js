@@ -1,38 +1,16 @@
-import Lottery from "./modules/lottery.js";
-import { politicians, folk } from "./data/data.js";
+import { lectures } from "./data/data.js";
+import Lecture from "./modules/lecture.js";
 
-const buttonStartLotteryEl = document.querySelector(".button-start-lottery");
-const lottteryResultsEl = document.querySelector(".lottery-results");
-const winningCombinationEl = document.querySelector(".winning-combination");
-const winningMessageEl = document.querySelector(".winners-message");
-const winnersEl = document.querySelector(".winners");
+const gridItemEl = document.querySelector(".grid__item");
+const gridTitleEl = document.querySelector(".grid__title");
+const gridTextEl = document.querySelector(".grid__text");
 
-const lottery = new Lottery(politicians);
+const inputEl = document.querySelector(".section__form");
 
-buttonStartLotteryEl.addEventListener("click", function () {
-  buttonStartLotteryEl.disabled = true;
-  buttonStartLotteryEl.innerText = "Lottery drawing in progress...";
+inputEl.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+  }
 
-  lottery
-    .startDrawing()
-    .then((result) => {
-      winnersEl.display = "block";
-      winningCombinationEl.innerText = `Winning combination is: ${result.winningCombination}`;
-      winningMessageEl.innerHTML = "Winners:";
-
-      let winnersList = "";
-      result.winners.forEach(
-        (winner) => (winnersList += `<li>${winner.getPlayerDetails()}</li>`)
-      );
-      winnersEl.innerHTML = winnersList;
-    })
-    .catch((result) => {
-      winnersEl.display = "none";
-      winningCombinationEl.innerHTML = `Winning combination was: ${result.winningCombination}`;
-      winningMessageEl.innerHTML = "There are no winners!";
-    })
-    .finally(() => {
-      buttonStartLotteryEl.disabled = false;
-      buttonStartLotteryEl.innerText = "Start lottery drawing";
-    });
+  let letter = [];
 });
