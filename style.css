@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Manrope", sans-serif;
+}
+
 tr,
 th,
 td {
